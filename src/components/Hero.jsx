@@ -5,7 +5,7 @@ import { BsLinkedin, BsGithub, BsInstagram } from "react-icons/bs";
 
 const lines = [
   "Hi, I'm Prince Yadav",
-  "A Passionate Web Developer, I build clean, responsive, and high-performance web applications",
+  "A Passionate Web Developer, I build clean, responsive, and high-performance web applications.",
 ];
 
 export default function Hero() {
@@ -54,7 +54,7 @@ export default function Hero() {
           {displayed[1]}
         </p>
 
-        {/* Resume Download button */}
+        
         <a
           href={Resume}
           download="Prince_Yadav_Resume.pdf"
@@ -63,7 +63,7 @@ export default function Hero() {
           Download Resume
         </a>
 
-        {/* Social Icons */}
+        
         <div className="flex justify-center md:justify-start gap-6 mt-6 text-3xl text-gray-300">
           <a
             href="https://www.linkedin.com/in/callmeprinceyadav/"

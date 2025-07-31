@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Resume from "../assets/resume.pdf";
 import { motion } from "framer-motion";
 import { BsLinkedin, BsGithub, BsInstagram } from "react-icons/bs";
+import logo from "../assets/Profile.jpg"
 
 const lines = [
   "Hi, I'm Prince Yadav",
@@ -104,7 +105,7 @@ export default function Hero() {
         className="flex-shrink-0"
       >
         <img
-          src="/your-image.jpg"
+          src= {logo}
           alt="Prince Yadav"
           className="w-40 h-40 md:w-56 md:h-56 rounded-full shadow-2xl object-cover border-4 border-cyan-400"
         />

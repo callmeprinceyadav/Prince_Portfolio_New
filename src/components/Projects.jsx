@@ -1,6 +1,8 @@
 import { motion } from "framer-motion";
 import BlueFly from "../assets/blue.png";
 import Myntra from "../assets/myntaclone.png"
+import Travel from "../assets/Travel.png"
+import ScorEazy from "../assets/ScorEazy.png"
 
 
 const projects = [
@@ -14,9 +16,24 @@ const projects = [
   {
     name: "BLuefly",
     description: "A sleek e-commerce interface with smooth product browsing, user auth, and animated cart experience.",
-    stack: ["React", "Javascript", "Express Js", "MogoDb"],
+    stack: ["React", "Javascript", "Express Js", "MongoDb","Node.js"],
     link: "bluefly-check.netlify.app",
     image: BlueFly
+  },
+  
+  {
+    name: "Travel Website",
+    description: "A user-friendly travel booking platform that lets you search, compare, tours with ease — all in one place",
+    stack: ["React", "Javascript", "Express Js", "MongoDb","Node.Js"],
+    link: "https://travel-masai.netlify.app/",
+    image: Travel
+  },
+  {
+    name: "ScorEazy",
+    description: "Built Scoreazy, an AI-powered learning platform blending educational psychology with personalized, engaging lessons for kids.",
+    stack: ["Html", "Css", "Tailwind"],
+    link: "https://scoreazy-assign.netlify.app/",
+    image: ScorEazy
   },
   
 ];

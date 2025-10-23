@@ -35,7 +35,7 @@ const projects = [
     category: "E-commerce",
     icon: FaShoppingCart,
     color: "from-blue-500 to-indigo-500",
-    featured: true,
+    featured: false,
     status: "Completed",
     year: "2024"
   },
@@ -51,9 +51,9 @@ const projects = [
     category: "Travel",
     icon: FaPlane,
     color: "from-emerald-500 to-teal-500",
-    featured: false,
+    featured: true,
     status: "Completed",
-    year: "2024"
+    year: "2025"
   },
   {
     id: 4,
@@ -69,7 +69,7 @@ const projects = [
     color: "from-purple-500 to-pink-500",
     featured: false,
     status: "Completed",
-    year: "2024"
+    year: "2025"
   }
 ];
 

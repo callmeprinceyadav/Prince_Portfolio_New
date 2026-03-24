@@ -53,36 +53,44 @@ const socialLinks = [
 
 export default function Contact() {
   const [submitted, setSubmitted] = useState(false);
+  const [error, setError] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  function handleSubmit(e) {
+  async function handleSubmit(e) {
     e.preventDefault();
     setIsSubmitting(true);
+    setSubmitted(false);
+    setError(false);
     
     const form = e.target;
     const formData = new FormData(form);
     
     // Submit to Netlify
-    fetch('/', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-      body: new URLSearchParams(formData).toString(),
-    })
-      .then(() => {
+    try {
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams(formData).toString(),
+      });
+
+      if (response.ok) {
         setIsSubmitting(false);
         setSubmitted(true);
         form.reset();
         
         // Hide success message after 5 seconds
         setTimeout(() => setSubmitted(false), 5000);
-      })
-      .catch(() => {
-        setIsSubmitting(false);
-        // For development/fallback, still show success
-        setSubmitted(true);
-        form.reset();
-        setTimeout(() => setSubmitted(false), 5000);
-      });
+      } else {
+        throw new Error('Form submission failed');
+      }
+    } catch (err) {
+      console.error("Form submission error:", err);
+      setIsSubmitting(false);
+      setError(true);
+      
+      // Keep error message visible for a while
+      setTimeout(() => setError(false), 5000);
+    }
   }
 
   return (
@@ -232,10 +240,11 @@ export default function Contact() {
                 Send Message
               </h3>
 
-              {/* Success Message */}
-              <AnimatePresence>
+              {/* Feedback Messages */}
+              <AnimatePresence mode="wait">
                 {submitted && (
                   <motion.div
+                    key="success"
                     initial={{ opacity: 0, y: -20, scale: 0.8 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     exit={{ opacity: 0, y: -20, scale: 0.8 }}
@@ -245,6 +254,21 @@ export default function Contact() {
                     <div>
                       <p className="text-green-400 font-semibold">Message Sent Successfully!</p>
                       <p className="text-green-300 text-sm">Thanks for reaching out. I'll get back to you soon.</p>
+                    </div>
+                  </motion.div>
+                )}
+                {error && (
+                  <motion.div
+                    key="error"
+                    initial={{ opacity: 0, y: -20, scale: 0.8 }}
+                    animate={{ opacity: 1, y: 0, scale: 1 }}
+                    exit={{ opacity: 0, y: -20, scale: 0.8 }}
+                    className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-2xl flex items-center gap-3"
+                  >
+                    <FaRocket className="text-red-400 text-xl rotate-180" />
+                    <div>
+                      <p className="text-red-400 font-semibold">Submission Failed</p>
+                      <p className="text-red-300 text-sm">Please try again later or contact me via email directly.</p>
                     </div>
                   </motion.div>
                 )}

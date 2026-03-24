@@ -11,14 +11,14 @@ function App() {
     <div className="font-sans min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-gray-950">
       <Navbar />
       <main className="px-4 md:px-16 max-w-6xl mx-auto">
-  <AnimatePresence>
-    <Hero />
-    <About />
-    <SkillsAndTools />
-    <Projects />
-    <Contact />
-  </AnimatePresence>
-</main>
+        <AnimatePresence>
+          <Hero key="hero" />
+          <About key="about" />
+          <SkillsAndTools key="skills" />
+          <Projects key="projects" />
+          <Contact key="contact" />
+        </AnimatePresence>
+      </main>
     </div>
   );
 }

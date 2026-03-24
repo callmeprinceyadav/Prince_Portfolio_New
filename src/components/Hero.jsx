@@ -1,14 +1,16 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
 import Resume from "../assets/resume.pdf";
-import { motion, useAnimationFrame, useMotionValue, useTransform } from "framer-motion";
+import { motion, useMotionValue, useTransform } from "framer-motion";
 import { BsLinkedin, BsGithub, BsInstagram } from "react-icons/bs";
 import { FaDownload, FaCode, FaRocket } from "react-icons/fa";
-import logo from "../assets/Profile.jpg"
+import logo from "../assets/Profile.jpg";
+import { socialLinks } from "../constants/hero";
 
-const lines = [
-  "Hi, I'm Prince Yadav",
-  "A Passionate Web Developer, I build clean, responsive, and high-performance web applications.",
-];
+const iconMap = {
+  LinkedIn: BsLinkedin,
+  GitHub: BsGithub,
+  Instagram: BsInstagram,
+};
 
 // Floating particles component
 const FloatingParticles = () => {
@@ -186,29 +188,28 @@ export default function Hero() {
             transition={{ duration: 0.6, delay: 1.4 }}
             className="flex justify-center lg:justify-start gap-4"
           >
-            {[
-              { icon: BsLinkedin, href: "https://www.linkedin.com/in/callmeprinceyadav/", color: "hover:text-blue-400 hover:shadow-blue-500/25", bgColor: "hover:bg-blue-500/10", label: "LinkedIn" },
-              { icon: BsGithub, href: "https://github.com/callmeprinceyadav", color: "hover:text-white hover:shadow-gray-500/25", bgColor: "hover:bg-gray-500/10", label: "GitHub" },
-              { icon: BsInstagram, href: "https://www.instagram.com/callmeprinceyadav", color: "hover:text-pink-400 hover:shadow-pink-500/25", bgColor: "hover:bg-pink-500/10", label: "Instagram" }
-            ].map(({ icon: Icon, href, color, bgColor, label }, index) => (
-              <motion.a
-                key={label}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                initial={{ opacity: 0, scale: 0.8 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.3, delay: 1.5 + index * 0.1 }}
-                whileHover={{ scale: 1.1, y: -3, rotateY: 15 }}
-                whileTap={{ scale: 0.95 }}
-                className={`group relative p-4 glass-card rounded-2xl text-2xl text-gray-400 ${color} ${bgColor} transition-all duration-300 hover:shadow-xl border hover:border-white/20`}
-                aria-label={label}
-              >
-                <Icon className="relative z-10" />
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
-                <div className="absolute -inset-0.5 rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity blur-sm" />
-              </motion.a>
-            ))}
+            {socialLinks.map(({ href, color, bgColor, label }, index) => {
+              const Icon = iconMap[label];
+              return (
+                <motion.a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  initial={{ opacity: 0, scale: 0.8 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.3, delay: 1.5 + index * 0.1 }}
+                  whileHover={{ scale: 1.1, y: -3, rotateY: 15 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`group relative p-4 glass-card rounded-2xl text-2xl text-gray-400 ${color} ${bgColor} transition-all duration-300 hover:shadow-xl border hover:border-white/20`}
+                  aria-label={label}
+                >
+                  <Icon className="relative z-10" />
+                  <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity" />
+                  <div className="absolute -inset-0.5 rounded-2xl opacity-0 group-hover:opacity-30 transition-opacity blur-sm" />
+                </motion.a>
+              );
+            })}
           </motion.div>
         </motion.div>
 
